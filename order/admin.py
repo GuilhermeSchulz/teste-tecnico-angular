@@ -52,7 +52,7 @@ class AdminModel(admin.ModelAdmin):
                 "own_hand": False
             }
         }
-        response = self.call_freight_api(data)
+        response = self.api_calculate_freight(data)
         if response.status_code == 200:
             response_data = response.json()
             for item in response_data:
