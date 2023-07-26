@@ -4,6 +4,10 @@ import requests
 import json
 from freight.models import Freight
 from django.shortcuts import render
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 
 class FreightInline(admin.TabularInline):
@@ -21,7 +25,7 @@ class AdminModel(admin.ModelAdmin):
 
     def api_calculate_freight(self, data):
         url = "https://sandbox.melhorenvio.com.br/api/v2/me/shipment/calculate"
-        token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjI5YTY1YWUyNjEzMjkyOGM2MjFhNDNiYmUzZDI1NjQ1MGJjMzk2YWE0NTBlYTYzYTIzMmYzOTRlOTYzZjkzY2FiY2RjMWVhNmVjYjNlOTE3In0.eyJhdWQiOiI5NTYiLCJqdGkiOiIyOWE2NWFlMjYxMzI5MjhjNjIxYTQzYmJlM2QyNTY0NTBiYzM5NmFhNDUwZWE2M2EyMzJmMzk0ZTk2M2Y5M2NhYmNkYzFlYTZlY2IzZTkxNyIsImlhdCI6MTY5MDMxNjU0OSwibmJmIjoxNjkwMzE2NTQ5LCJleHAiOjE3MjE5Mzg5NDksInN1YiI6IjFlZjMzOTNkLTBkNWMtNDc4ZC1iMDEyLTQ1M2U0OWVlN2IwOSIsInNjb3BlcyI6WyJzaGlwcGluZy1jYWxjdWxhdGUiXX0.t2Ei-Gg9mIrhMMXPzeTdW-KlY7RNv8FvJtsE0ABh6RaJRvIIuvl64o7A_RDuGRTWsVtKJeieEocEzvR_XsrsEJsAjC0rmPHBETjw9Jyva72G9dMjEceX-T6_Q-7O8oH8Cpsk6l4SMWcwWHesQQYjG7mq9L80DGWGq2JPMdTAx-Xp_JpT4OhaD7WxTj2EKOA-WMiBXpLboHu1eo-BJ-fR91nJOIucFiNZZiOK3hGJf8nqzEznvD8j9nCMF2wCqkhdZ3WnXO9BuAl6UX3tnbk3Gu1Mq_EDJZferppKSrkCTh-LBUPWIuKQBd11cW0TFN2KOUsMVBaCQD3LDzx6_P5MFmsk57LNSki1NPuEd615S3t01N1dD-oapyvzBfSu0OKe9PtzdxGXj9F137QgPXqPbHpgtKZD-QnKdvAlA0Rowh0QpylwOVzAi9nAXiL0MUqTpkhBUuiRfWftWHS4FQqHYIoOHGqWavQ4tQ_ix5OBB60_Dd_qWzSdE3hOEErKP6mZUmuPEkQhJ8VMeLV-kZe2QN-5Xs6cQGs1wgayHIXb_Nd_NM5I4J6wIqFUl3DqkQAJEAG-Pjkdzwfv3hSCAgZ4_boZ99vLKGEdc6XZG1aZ2EYO0tdZQzCjuEIrKM8_RbVNikzBVp96yQhJh9u2rBKyLGEOhBLPyWzyQ8tQ95Q1R3Q"
+        token = os.getenv("TOKEN")
         headers = {
             "Accept": "application/json",
             "Content-Type": "application/json",
